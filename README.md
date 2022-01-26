@@ -1,2 +1,2 @@
 # sentitopics
-R package sentitopics for estimating joint sentiment-topic models
+Joint estimation of sentiment and topics in textual data
