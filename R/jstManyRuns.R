@@ -61,7 +61,7 @@ jstManyRuns <- function(dfm,
   if(!is.na(seed)) set.seed(seed) # TO DO: use withr to make sure rng of user isn't changed 
   
   l <- foreach(i=1:n,
-               .packages = c("rJST", "dplyr", "magrittr", "readr", "quanteda", "quanteda.textstats")) %dorng% 
+               .packages = c("sentitopics", "dplyr", "magrittr", "readr", "quanteda", "quanteda.textstats")) %dorng% 
     {
       
       jst_out <- sentitopics::jst(dfm = dfm, 

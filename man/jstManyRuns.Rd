@@ -63,7 +63,7 @@ A data.frame with mean sentiment label predictions and uncertainty estimates
 Estimates a joint sentiment topic model n times and returns mean sentiment label predictions, see Details for model description.
 }
 \details{
-Works similarly to \code{\link{function}}, but runs the model estimation n times using parallelization. 
+Works similarly to \code{\link{jst}}, but runs the model estimation n times using parallelization. 
 Does not return the full results of each individual model, but mean sentiment label predictions 
 with uncertainty estimates.
 }
