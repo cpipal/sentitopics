@@ -85,7 +85,7 @@ jst_reversed <- function(dfm,
     stop("Please input a quanteda dfm or tidytext tm object as data.")
   }
   if(any(class(dfm) == "DocumentTermMatrix")) {
-    dfm <- tm %>% quanteda::as.dfm()
+    dfm <- dfm %>% quanteda::as.dfm()
   }
 
   sentiWords <- integer()
