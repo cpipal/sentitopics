@@ -1,0 +1,80 @@
+---
+title: "Introduction to rJST"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to rJST}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+library(rJST)
+library(magrittr)
+
+set.seed(1)
+```
+
+## Introduction
+
+The Joint Sentiment Topic model is a model, similar to LDA, which estimates topic and sentiment distributions for documents given the words they contain. It assumes that documents primarily have a sentiment distribution and - within the sentiment categories - topic distributions. Take for example a movie review, which has the primary purpose of conveying a sentiment (positive or negative) and then has some things it is positive about and some about which it is negative. The package also contains its reversed version, in which a document is assumed to primarily have topic distributions and within each topic a sentiment distribution. This is more likely for a political party's manifesto, where opinions on a range of topics are formulated. It does not necessarily contain one opinion or sentiment, but instead that varies per topic.
+
+Both models are estimated using Gibbs samplers implemented using `Rcpp` They take a `quanteda` term-frequency matrix (`dfm`) and a `quanteda dictionary` as inputs.
+
+This vignette gives a quick walkthrough of a JST run. I use example data from `quanteda` and the `paradigm()` dictionary included. Note that the dictionary might not be the most suitable for the context. Furthermore, the corpus is very small for such an approach. As an illustration, however, it works fine.
+
+> Citation: If using the models, please cite the papers that describe the models. For bibtex, see below.
+
+## Running the model
+
+```{r jst test}
+data <- quanteda::data_corpus_inaugural %>% #The quanteda example dfm
+        quanteda::tokens(remove_numbers = TRUE, remove_punct = TRUE) %>%
+        quanteda::dfm(remove = quanteda::stopwords())
+
+model <- jst(data, paradigm(), numIters = 600) #paradigm is a standard sentiment dictionary included in the package, it is however rather tailored towards reviews. For a similar political corpus a diferent dictionary might be more sensible.
+```
+
+The above code is enough to estimate a JST model. Use `?jst` to get explanations for all parameters. Note that I do not stem the texts here, as that would create a mismatch between the sentiment dictionary and the words in the `dfm`. If you wish to stem the dictionary as well, use the `dictionary_wordstem` method supplied. However, be cautious.
+
+## Analysing the model
+
+`rJST` includes some methods to explore the estimated model. First, the top words per sentiment-topic category can be found using the `topNwords` or the `top20words` methods. These are central to the interpretation of the meaning of the topics and sentitopics.
+
+```{r top20words}
+topNwords(model, N = 15, topic = 2, sentiment = 1)
+```
+
+A few things can be noted from the above. Firstly, unlike the `stm` package, `rJST` only selects the top words by parameter. Words that occur often are therefore more likely to come out on top. Changing N can help in the interpretation.
+
+The second aspect is study of the model parameters. The `get_parameter` returns a useable data.frame with the relevant parameter values. 
+
+```{r parameter}
+pi <- get_parameter(model,'pi')
+pi[pi$President %in% c('Bush','Obama','Trump') & pi$Year > 2000,]
+```
+
+## Citation
+
+#### JST
+
+> @inproceedings{lin2009joint,
+  title={Joint sentiment/topic model for sentiment analysis},
+  author={Lin, Chenghua and He, Yulan},
+  booktitle={Proceedings of the 18th ACM conference on Information and knowledge management},
+  pages={375--384},
+  year={2009},
+  organization={ACM}
+}
+
+#### JST and reverse JST
+
+> @article{lin2012weakly,
+  title={Weakly supervised joint sentiment-topic detection from text},
+  author={Lin, Chenghua and He, Yulan and Everson, Richard and Ruger, Stefan},
+  journal={IEEE Transactions on Knowledge and Data engineering},
+  volume={24},
+  number={6},
+  pages={1134--1145},
+  year={2012},
+  publisher={IEEE}
+}
