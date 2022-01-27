@@ -1,5 +1,5 @@
 # sentitopics
-Implementation of Joint Sentiment Topic Modelling (Lin and He) for R.
+Joint Estimation of Sentiment and Topics in Textual Data using 
 
 # How to use
 
