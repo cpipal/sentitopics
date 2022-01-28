@@ -140,5 +140,7 @@ jstManyRuns <- function(dfm,
                        sent3_ci_low = sent3$ci_low)) 
   }
   
+  res <- cbind(dfm@docvars, res)
+  
   return(res)
 }
