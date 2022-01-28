@@ -1,4 +1,4 @@
 library(testthat)
-library(rJST)
+library(sentitopics)
 
-test_check("rJST")
+test_check("sentitopics")
