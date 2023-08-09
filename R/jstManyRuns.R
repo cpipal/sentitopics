@@ -29,11 +29,17 @@
 #' @return A data.frame with mean sentiment label predictions and uncertainty estimates
 #'
 #' @examples
-#' results <- jstManyRuns(quanteda::dfm(quanteda::data_corpus_irishbudget2010),
+#' \donttest{
+#' results <- jstManyRuns(quanteda::dfm(quanteda.textmodels::data_corpus_irishbudget2010),
 #'              paradigm(),
 #'              numTopics = 5,
 #'              numIters = 15, # Use more in practice!
-#'              n = 5) # Use more in practice!
+#'              n = 5, # Use more in practice!
+#'              ncores = 1) # use more in practice!
+#' }
+#' @importFrom doRNG %dorng%
+#' @importFrom magrittr %>%
+#' @importFrom stats qnorm qt sd
 #' @export
 jstManyRuns <- function(dfm,
                         sentiLexInput = NULL,
@@ -48,10 +54,7 @@ jstManyRuns <- function(dfm,
                         n = 30,
                         confidence = 0.95,
                         ncores = NA,
-                        seed = NA){
-  
-  library(doRNG) # TO DO: Find other solution to use %dorng% from the doRNG-packge here
-  
+                        seed = NA){  
   if(is.na(ncores)){
     ncores <- parallel::detectCores() - 3
   }
@@ -60,8 +63,8 @@ jstManyRuns <- function(dfm,
   
   if(!is.na(seed)) set.seed(seed) # TO DO: use withr to make sure rng of user isn't changed 
   
-  l <- foreach(i=1:n,
-               .packages = c("sentitopics", "dplyr", "magrittr", "readr", "quanteda", "quanteda.textstats")) %dorng% 
+  l <- foreach::foreach(i=1:n,
+               .packages = c("sentitopics", "dplyr", "magrittr", "quanteda")) %dorng% 
     {
       
       jst_out <- sentitopics::jst(dfm = dfm, 

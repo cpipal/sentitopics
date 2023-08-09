@@ -68,9 +68,12 @@ Does not return the full results of each individual model, but mean sentiment la
 with uncertainty estimates.
 }
 \examples{
-results <- jstManyRuns(quanteda::dfm(quanteda::data_corpus_irishbudget2010),
+\donttest{
+results <- jstManyRuns(quanteda::dfm(quanteda.textmodels::data_corpus_irishbudget2010),
              paradigm(),
              numTopics = 5,
              numIters = 15, # Use more in practice!
-             n = 5) # Use more in practice!
+             n = 5, # Use more in practice!
+             ncores = 1) # use more in practice!
+}
 }

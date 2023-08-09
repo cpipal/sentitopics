@@ -69,7 +69,7 @@ is.JST.result <- function(x) {
 #' @return A JST.result object containing a data.frame for each estimated parameter
 #'
 #' @examples
-#' model <- jst(quanteda::dfm(quanteda::data_corpus_irishbudget2010),
+#' model <- jst(quanteda::dfm(quanteda.textmodels::data_corpus_irishbudget2010),
 #'              paradigm(),
 #'              numTopics = 5,
 #'              numIters = 15) # Use more in practice!

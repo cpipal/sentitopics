@@ -65,7 +65,7 @@ is.JST_reversed.result <- function(x) {
 #' parameter
 #'
 #' @examples
-#' model <- jst(quanteda::dfm(quanteda::data_corpus_irishbudget2010),
+#' model <- jst(quanteda::dfm(quanteda.textmodels::data_corpus_irishbudget2010),
 #'              paradigm(),
 #'              numTopics = 5,
 #'              numIters = 150)

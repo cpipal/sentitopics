@@ -62,7 +62,7 @@ Lin, C., He, Y., Everson, R. and Ruger, S., 2012. Weakly supervised joint sentim
 detection from text. IEEE Transactions on Knowledge and Data engineering, 24(6), pp.1134-1145.
 }
 \examples{
-model <- jst(quanteda::dfm(quanteda::data_corpus_irishbudget2010),
+model <- jst(quanteda::dfm(quanteda.textmodels::data_corpus_irishbudget2010),
              paradigm(),
              numTopics = 5,
              numIters = 15) # Use more in practice!
