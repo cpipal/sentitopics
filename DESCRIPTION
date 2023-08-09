@@ -30,10 +30,3 @@ Encoding: UTF-8
 RoxygenNote: 7.1.2.9000
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2020-02-13 14:36:34 UTC; max_b
-Author: Christian Pipal [cre, aut],,
-  Max Boiten [aut],
-  Chenghua Lin [cph],
-  Yulan He [cph]
-Repository: Github
-Date/Publication: 
