@@ -20,7 +20,7 @@ Take the results object for the selected parameter
 and return a data.frame which is similar to tidy standards.
 }
 \examples{
-data <- quanteda::dfm(quanteda::data_corpus_irishbudget2010)
+data <- quanteda::dfm(quanteda.textmodels::data_corpus_irishbudget2010)
 model <- jst(data, paradigm(), numTopics = 5, numIters = 50)
 
 phi <- get_parameter(model, 'phi')

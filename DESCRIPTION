@@ -12,10 +12,10 @@ Description: Estimates the Joint Sentiment Topic model and its reversed version,
     as described by Lin and He, 2009 <DOI:10.1145/1645953.1646003> and Lin, He, Everson and Ruger 
     (2012) <DOI:10.1109/TKDE.2011.48>.
 License: GPL-3
-Imports: doParallel, doRNG, foreach, magrittr, Matrix, matrixStats, quanteda, Rcpp, RcppProgress, reshape2, rngtools,
-    SnowballC
+Imports: doParallel, doRNG, foreach, magrittr, Matrix, matrixStats, quanteda, reshape2,
+    SnowballC, dplyr
 Depends: methods
-Suggests: knitr, rmarkdown, testthat (>= 2.1.0)
+Suggests: knitr, rmarkdown, testthat (>= 2.1.0), quanteda.textmodels
 LinkingTo: Rcpp, RcppArmadillo, RcppProgress
 Collate: 
     'RcppExports.R'
@@ -27,13 +27,6 @@ Collate:
     'jstManyRuns.R'
     'sentitopics.R'
 Encoding: UTF-8
-RoxygenNote: 7.1.2.9000
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2020-02-13 14:36:34 UTC; max_b
-Author: Christian Pipal [cre, aut],,
-  Max Boiten [aut],
-  Chenghua Lin [cph],
-  Yulan He [cph]
-Repository: Github
-Date/Publication: 

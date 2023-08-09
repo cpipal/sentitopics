@@ -1,5 +1,5 @@
 ---
-title: "Introduction to rJST"
+title: "Introduction to sentitopics"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to rJST}
@@ -8,7 +8,7 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-library(rJST)
+library(sentitopics)
 library(magrittr)
 
 set.seed(1)
